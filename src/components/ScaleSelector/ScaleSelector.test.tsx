@@ -34,7 +34,7 @@ describe("ScaleSelector", () => {
       true,
       false,
       true,
-    ] satisfies ScaleSelection;
+    ] satisfies BooleanScale;
     renderComponent({ selection: noteSelections });
 
     screen.getAllByRole("checkbox").forEach((checkbox, i) => {
@@ -47,7 +47,7 @@ describe("ScaleSelector", () => {
   });
 
   it("passes up a selected scale", async () => {
-    const noteSelections = new Array(12).fill(false) satisfies ScaleSelection;
+    const noteSelections = new Array(12).fill(false) satisfies BooleanScale;
     const onChange = vi.fn();
     renderComponent({ selection: noteSelections, onChange });
     await userEvent.click(screen.getByLabelText("D"));

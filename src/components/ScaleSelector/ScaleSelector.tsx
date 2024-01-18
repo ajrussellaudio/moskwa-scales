@@ -2,8 +2,8 @@ import { toggleAtIndex } from "../../lib/toggleAtIndex";
 import { NOTES } from "../../notes";
 
 type ScaleSelectorProps = {
-  selection?: ScaleSelection;
-  onChange: (scale: ScaleSelection) => void;
+  selection?: BooleanScale;
+  onChange: (scale: BooleanScale) => void;
 };
 
 export function ScaleSelector({ selection = new Array(12).fill(false), onChange }: ScaleSelectorProps) {
