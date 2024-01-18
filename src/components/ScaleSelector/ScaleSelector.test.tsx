@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ComponentProps } from "react";
 import { ScaleSelector } from "./ScaleSelector";
-import { NOTES } from "../../notes";
+import { NOTES } from "../../constants/notes";
 
 const defaultProps: ComponentProps<typeof ScaleSelector> = {
   onChange: () => null,

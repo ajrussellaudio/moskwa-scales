@@ -1,4 +1,4 @@
-import { NOTES } from "../../notes";
+import { NOTES } from "../../constants/notes";
 
 type ScaleSelectorProps = {
   selection?: BooleanScale;
