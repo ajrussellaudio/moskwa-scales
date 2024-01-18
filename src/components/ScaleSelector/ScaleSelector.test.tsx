@@ -51,19 +51,6 @@ describe("ScaleSelector", () => {
     const onChange = vi.fn();
     renderComponent({ selection: noteSelections, onChange });
     await userEvent.click(screen.getByLabelText("D"));
-    expect(onChange).toHaveBeenCalledWith([
-      false,
-      false,
-      true,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-    ]);
+    expect(onChange).toHaveBeenCalledWith(2);
   });
 });
