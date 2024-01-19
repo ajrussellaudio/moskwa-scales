@@ -5,7 +5,7 @@ import { SCALE_PRESETS } from "../../constants/scales";
 import userEvent from "@testing-library/user-event";
 
 const defaultProps: ComponentProps<typeof ScaleDropdown> = {
-  scales: [],
+  selectedScale: [],
   onChange: () => null,
 };
 
@@ -14,7 +14,7 @@ const renderComponent = (props: Partial<ComponentProps<typeof ScaleDropdown>> = 
 
 describe("ScaleDropdown", () => {
   it("renders correctly", () => {
-    renderComponent({ scales: SCALE_PRESETS });
+    renderComponent();
     expect(screen.getByRole("combobox")).toBeInTheDocument();
     expect(screen.getByRole("option", { name: /preset/i })).toBeDisabled();
     SCALE_PRESETS.forEach((scalePreset) => {
@@ -24,9 +24,17 @@ describe("ScaleDropdown", () => {
 
   it("passes the selected scale to onChange", async () => {
     const onChange = vi.fn();
-    renderComponent({ scales: SCALE_PRESETS, onChange });
+    renderComponent({ onChange });
     const selectedScale = SCALE_PRESETS[1];
     await userEvent.selectOptions(screen.getByRole("combobox"), selectedScale.name);
-    expect(onChange).toHaveBeenCalledWith(selectedScale.scale);
+    expect(onChange).toHaveBeenCalledWith(selectedScale.notes);
+  });
+
+  it("selects a scale option if that scale is entered", () => {
+    const onChange = vi.fn();
+    const selectedScale = SCALE_PRESETS[3];
+    renderComponent({ selectedScale: selectedScale.notes, onChange });
+    expect(screen.getByRole("combobox")).toHaveDisplayValue(selectedScale.name);
+    expect(onChange).not.toHaveBeenCalled();
   });
 });

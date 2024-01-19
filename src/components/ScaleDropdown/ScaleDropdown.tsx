@@ -1,19 +1,26 @@
+import { SCALE_PRESETS } from "../../constants/scales";
+
 type ScaleDropdownProps = {
-  scales: Array<{ name: string; scale: BooleanScale }>;
+  scales?: Array<ScalePreset>;
+  selectedScale: BooleanScale;
   onChange: (selectedScale: BooleanScale) => void;
 };
 
-export function ScaleDropdown({ scales, onChange }: ScaleDropdownProps) {
+export function ScaleDropdown({ scales = SCALE_PRESETS, selectedScale, onChange }: ScaleDropdownProps) {
+  const findSelectedScale = scales.find(({ notes }) => notes.every((note, i) => note === selectedScale[i]));
+
   const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
-    const selectedScale = scales.find(({ name }) => name === event.currentTarget.value);
-    if (selectedScale) {
-      onChange(selectedScale.scale);
+    const newSelectedScale = scales.find(({ name }) => name === event.currentTarget.value);
+    if (newSelectedScale) {
+      onChange(newSelectedScale.notes);
     }
   };
 
   return (
-    <select onChange={handleChange} defaultValue="Preset...">
-      <option disabled>Preset...</option>
+    <select onChange={handleChange} value={findSelectedScale?.name || "default"}>
+      <option disabled value="default">
+        Choose a preset...
+      </option>
       {scales.map((scale) => (
         <option key={scale.name}>{scale.name}</option>
       ))}

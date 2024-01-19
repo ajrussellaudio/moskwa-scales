@@ -7,50 +7,50 @@ const MAJOR_PENTA_SCALE = [1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0] satisfies MoskwaS
 export const SCALE_PRESETS = [
   {
     name: "Chromatic",
-    scale: new Array(12).fill(true),
+    notes: new Array(12).fill(true),
   },
   {
     name: "Major",
-    scale: moskwaToBoolean(MAJOR_SCALE),
+    notes: moskwaToBoolean(MAJOR_SCALE),
   },
   {
     name: "Minor (Natural)",
-    scale: moskwaToBoolean(rotateRight(MAJOR_SCALE, 3)),
+    notes: moskwaToBoolean(rotateRight(MAJOR_SCALE, 3)),
   },
   {
     name: "Major Pentatonic",
-    scale: moskwaToBoolean(MAJOR_PENTA_SCALE),
+    notes: moskwaToBoolean(MAJOR_PENTA_SCALE),
   },
   {
     name: "Minor Pentatonic",
-    scale: moskwaToBoolean(rotateRight(MAJOR_PENTA_SCALE, 3)),
+    notes: moskwaToBoolean(rotateRight(MAJOR_PENTA_SCALE, 3)),
   },
   {
     name: "Ionian",
-    scale: moskwaToBoolean(MAJOR_SCALE),
+    notes: moskwaToBoolean(MAJOR_SCALE),
   },
   {
     name: "Dorian",
-    scale: moskwaToBoolean(rotateLeft(MAJOR_SCALE, 2)),
+    notes: moskwaToBoolean(rotateLeft(MAJOR_SCALE, 2)),
   },
   {
     name: "Phrygian",
-    scale: moskwaToBoolean(rotateLeft(MAJOR_SCALE, 4)),
+    notes: moskwaToBoolean(rotateLeft(MAJOR_SCALE, 4)),
   },
   {
     name: "Lydian",
-    scale: moskwaToBoolean(rotateLeft(MAJOR_SCALE, 5)),
+    notes: moskwaToBoolean(rotateLeft(MAJOR_SCALE, 5)),
   },
   {
     name: "Mixolydian",
-    scale: moskwaToBoolean(rotateLeft(MAJOR_SCALE, 7)),
+    notes: moskwaToBoolean(rotateLeft(MAJOR_SCALE, 7)),
   },
   {
     name: "Aeolian",
-    scale: moskwaToBoolean(rotateLeft(MAJOR_SCALE, 9)),
+    notes: moskwaToBoolean(rotateLeft(MAJOR_SCALE, 9)),
   },
   {
     name: "Locrian",
-    scale: moskwaToBoolean(rotateLeft(MAJOR_SCALE, 11)),
+    notes: moskwaToBoolean(rotateLeft(MAJOR_SCALE, 11)),
   },
-];
+] satisfies ScalePreset[];

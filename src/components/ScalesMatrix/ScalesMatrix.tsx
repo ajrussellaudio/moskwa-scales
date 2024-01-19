@@ -10,7 +10,11 @@ export function ScalesMatrix() {
       {scales.map((scale, i) => (
         <div key={i}>
           <ScaleSelector selection={scale} onChange={(noteIndex) => toggleNote(i, noteIndex)} />
-          <ScaleDropdown scales={SCALE_PRESETS} onChange={(selectedScale) => setScale(i, selectedScale)} />
+          <ScaleDropdown
+            scales={SCALE_PRESETS}
+            selectedScale={scale}
+            onChange={(selectedScale) => setScale(i, selectedScale)}
+          />
         </div>
       ))}
     </>
