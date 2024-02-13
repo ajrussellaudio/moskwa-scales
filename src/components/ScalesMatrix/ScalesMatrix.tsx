@@ -8,7 +8,7 @@ export function ScalesMatrix() {
   return (
     <>
       {scales.map((scale, i) => (
-        <div key={i}>
+        <div key={i} className="flex items-center space-x-4">
           <ScaleSelector selection={scale} onChange={(noteIndex) => toggleNote(i, noteIndex)} />
           <ScaleDropdown
             scales={SCALE_PRESETS}
