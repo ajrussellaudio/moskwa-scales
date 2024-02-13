@@ -1,5 +1,4 @@
-import { DownloadButton } from "./components/DownloadButton";
-import { Readout } from "./components/Readout";
+import { Output } from "./components/Output";
 import { ScalesMatrix } from "./components/ScalesMatrix";
 import { ScalesProvider } from "./context/Scales";
 
@@ -8,8 +7,7 @@ function App() {
     <ScalesProvider>
       <ScalesMatrix />
       <br />
-      <Readout />
-      <DownloadButton />
+      <Output />
     </ScalesProvider>
   );
 }
