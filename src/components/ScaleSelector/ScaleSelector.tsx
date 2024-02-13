@@ -1,4 +1,5 @@
 import { NOTES } from "../../constants/notes";
+import { Toggle } from "../ui/toggle";
 
 type ScaleSelectorProps = {
   selection?: BooleanScale;
@@ -7,12 +8,11 @@ type ScaleSelectorProps = {
 
 export function ScaleSelector({ selection = new Array(12).fill(false), onChange }: ScaleSelectorProps) {
   return (
-    <div>
+    <div className="flex items-center space-x-4">
       {NOTES.map((note, i) => (
-        <label key={note}>
+        <Toggle key={note} pressed={selection[i]} onPressedChange={() => onChange(i)}>
           {note}
-          <input type="checkbox" id={note} checked={selection[i]} onChange={() => onChange(i)} />
-        </label>
+        </Toggle>
       ))}
     </div>
   );

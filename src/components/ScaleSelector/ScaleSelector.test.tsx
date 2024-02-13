@@ -12,15 +12,15 @@ const renderComponent = (props: Partial<ComponentProps<typeof ScaleSelector>> = 
   render(<ScaleSelector {...defaultProps} {...props} />);
 
 describe("ScaleSelector", () => {
-  it("displays a checkbox for each note", () => {
+  it("displays a toggle for each note", () => {
     renderComponent();
-    expect(screen.getAllByRole("checkbox")).toHaveLength(NOTES.length);
+    expect(screen.getAllByRole("button")).toHaveLength(NOTES.length);
     NOTES.forEach((note) => {
-      expect(screen.getByLabelText(note)).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: note })).toBeInTheDocument();
     });
   });
 
-  it("checks a box if the note is selected", () => {
+  it("toggle is active if the note is selected", () => {
     const noteSelections = [
       false,
       true,
@@ -37,11 +37,11 @@ describe("ScaleSelector", () => {
     ] satisfies BooleanScale;
     renderComponent({ selection: noteSelections });
 
-    screen.getAllByRole("checkbox").forEach((checkbox, i) => {
+    screen.getAllByRole("button").forEach((button, i) => {
       if (noteSelections[i]) {
-        expect(checkbox).toBeChecked();
+        expect(button).toHaveAttribute("aria-pressed", "true");
       } else {
-        expect(checkbox).not.toBeChecked();
+        expect(button).toHaveAttribute("aria-pressed", "false");
       }
     });
   });
@@ -50,7 +50,7 @@ describe("ScaleSelector", () => {
     const noteSelections = new Array(12).fill(false) satisfies BooleanScale;
     const onChange = vi.fn();
     renderComponent({ selection: noteSelections, onChange });
-    await userEvent.click(screen.getByLabelText("D"));
+    await userEvent.click(screen.getByRole("button", { name: "D" }));
     expect(onChange).toHaveBeenCalledWith(2);
   });
 });
